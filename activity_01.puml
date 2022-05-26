@@ -1,0 +1,10 @@
+@startuml
+(*) -r-> "LOG macro"
+-r-> "Record"
+-r-> "Logger"
+-r-> "Appender"
+-d-> "Formatter"
+-d-> "Converter"
+-u-> "Appender"
+-r-> (*)
+@enduml
