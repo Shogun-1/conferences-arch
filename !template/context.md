@@ -1,27 +1,33 @@
 # Контекст решения
 <!-- Окружение системы (роли, участники, внешние системы) и связи системы с ним. Диаграмма контекста C4 и текстовое описание. 
-Подробнее: https://confluence.mts.ru/pages/viewpage.action?pageId=375783261
 -->
 ```plantuml
 @startuml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-LAYOUT_WITH_LEGEND()
+Person(admin, "Администратор")
+Person(security, "Безопасник")
+Person(user, "Пользователь")
 
-Person(speaker, "Докладчик", "Докладчик на конференции")
-Person(client, "Слушатель", "Посетитель конференции")
-Person(moderator, "Программный комитет", "Модераторы докладов")
-
-System(cnf, "Сайт конференции", "Позволяет публиковать доклады, проводить модерацию, осуществлять трансляцию докладов.")
-System_Ext(es, "E-mail system", "The internal Microsoft Exchange e-mail system.")
+System(smart_house, "Умный дом", "Веб приложение по управлению умным домом")
+System_Ext(temp,"Датчик температуры")
+System_Ext(door,"Датчик входа")
 
 
-Rel(speaker, cnf, "Uses")
-Rel(client, cnf, "Uses")
-Rel(moderator, cnf, "Uses")
-Rel(es, client, "Sends e-mails to")
-Rel(cnf, es, "Sends e-mails", "SMTP")
+Rel(admin, smart_house, "Добавление/просмотр информации о пользователях")
+Rel(security, smart_house,"Просмотр информации о прозодах")
+Rel(user, smart_house,"Просмотр информации о температуре")
+
+Rel_D(smart_house,temp,"Запрос информации о изменении температуры")
+Rel_D(smart_house,door,"Запрос информации о проходах")
+
 
 @enduml
 ```
 ## Назначение систем
+|Система| Описание|
+|-------|---------|
+| Умный дом| Основное приложение состоящие из набора микросервисов |
+|Датчик температуры| Внешние датчики, которые могут посылать обновление температуры|
+|Датчик входа| Внешние датчики, которые могут регистрировать вход/выход|
+
