@@ -3,8 +3,8 @@
 -r-> "Record"
 -r-> "Logger"
 -r-> "Appender"
--d-> "Formatter"
--d-> "Converter"
--u-> "Appender"
+-u-> "Formatter"
+-u-> "Converter"
+-d-> "Appender"
 -r-> (*)
 @enduml

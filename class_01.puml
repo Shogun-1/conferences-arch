@@ -4,5 +4,10 @@ class User {
   -String name
   +String name()
 }
+class Role{
+  -Int id
+  +String RoleName
+}
+User -- Role
 User <|-- SpecificUser
 @enduml
